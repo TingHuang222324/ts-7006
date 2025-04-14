@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
-const input = ref('')
+const input = ref<any>('')
 </script>
 
 <template>
@@ -14,7 +13,7 @@ const input = ref('')
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
-  <input :value="input" @input="($event) => input = ($event.target as HTMLInputElement).value" />
+  <a-input :value="input" @input="(e) => input = e.target.value" />
 </template>
 
 <style scoped>
