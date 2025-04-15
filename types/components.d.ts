@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AInput: typeof import('ant-design-vue/es')['Input']
     HelloWorld: typeof import('./../src/components/HelloWorld.vue')['default']
   }
 }
