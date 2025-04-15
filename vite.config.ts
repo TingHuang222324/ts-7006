@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import AntdvResolver from 'antdv-component-resolver'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vite.dev/config/
@@ -17,32 +17,18 @@ export default defineConfig({
        ],
     dts: 'types/auto-imports.d.ts',
     dirs: [ 'src/composables'],
+    resolvers:[AntDesignVueResolver()],
   }),
    Components({
-    resolvers: [AntdvResolver()],
+    resolvers: [AntDesignVueResolver({
+      importStyle: false, // css in js
+      resolveIcons: true,
+    }),],
     dts: 'types/components.d.ts',
     dirs: ['src/components'],
   })
   ],
   resolve: {
-    alias: [
-      {
-        find: /^ant-design-vue\/es$/,
-        replacement: 'ant-design-vue/es',
-      },
-      {
-        find: /^ant-design-vue\/dist$/,
-        replacement: 'ant-design-vue/dist',
-      },
-      {
-        find: /^ant-design-vue\/lib$/,
-        replacement: 'ant-design-vue/es',
-      },
-      {
-        find: /^ant-design-vue$/,
-        replacement: 'ant-design-vue/es',
-      }
-    ]
-  }
+  },
 
 })
